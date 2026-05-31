@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://blog-fastapi-react.onrender.com";
 
 function App() {
   const [posts, setPosts] = useState([]);
