@@ -60,7 +60,6 @@ function BlogForm({ posts, setPosts }) {
   const [creator, setCreator] = useState("");
   const [image_url, setImage] = useState("");
   const handleUpload = async (e) => {
-    console.log(e);
     const formData = new FormData();
     formData.append("image", e);
     for (const pair of formData.entries()) {
