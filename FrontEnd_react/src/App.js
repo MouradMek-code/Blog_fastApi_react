@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 const BASE_URL = "https://blog-fastapi-react.onrender.com";
