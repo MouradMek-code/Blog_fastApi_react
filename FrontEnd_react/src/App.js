@@ -11,6 +11,7 @@ function App() {
         const result = await fetch(`${BASE_URL}/post/all`);
         const data = await result.json();
         setPosts(data);
+        console.log(data);
       }
       FetchPosts();
     },
