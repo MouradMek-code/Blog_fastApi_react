@@ -42,7 +42,7 @@ function Post({ post }) {
       {post.image_url && (
         <img
           className="post-image"
-          src={`${BASE_URL}/${post.image_url}`}
+          src={`${post.image_url}`}
           alt={post.title}
         />
       )}
