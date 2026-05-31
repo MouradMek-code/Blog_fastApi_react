@@ -13,11 +13,10 @@ app.include_router(post_router.router)
 models.Base.metadata.create_all(bind=engine)
 
 app.mount("/images", StaticFiles(directory="images"), name="images")
-origins=[
-    "http://localhost:3000", "https://blog-fast-api-react-de1sxsl01-mek-mourad-s-projects.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
+    allow_headers=["*"],
 )
