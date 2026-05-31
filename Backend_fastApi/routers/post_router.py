@@ -4,10 +4,15 @@ from fastapi import APIRouter, Depends, UploadFile,File
 from sqlalchemy.orm import Session
 from database import db_post
 from database.database import get_db
-from database.models import DbPost
 from routers.schemas import PostBase,PostDisplay
-import string
-import random
+import cloudinary.uploader
+import cloudinary
+import os
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
+)
 router = APIRouter(prefix="/post",tags=["post"])
 
 @router.post("",response_model=PostDisplay)
@@ -33,12 +38,9 @@ def delete(id:int,db :Session=Depends(get_db)):
 
 @router.post("/image")
 def upload_image(image:UploadFile=File(...)):
-    letter=string.ascii_letters
-    rand_str=''.join(random.choice(letter) for _ in range(10))
-    new=f"{rand_str}."
-    filename=new.join(image.filename.rsplit('.',1))
-    path=f"images/{filename}"
-    with open(path,"w+b") as buffer:
-        shutil.copyfileobj(image.file,buffer)
 
-    return {"filename":path}
+    result = cloudinary.uploader.upload(image.file)
+
+    return {
+        "filename": result["secure_url"]
+    }
