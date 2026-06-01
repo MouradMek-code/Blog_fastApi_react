@@ -20,3 +20,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.api_route("/post/health", methods=["GET", "HEAD"])
+async def health():
+    return {"status": "ok"}

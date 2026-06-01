@@ -44,6 +44,4 @@ def upload_image(image:UploadFile=File(...)):
     return {
         "filename": result["secure_url"]
     }
-@router.get("/health")
-async def health():
-    return {"status": "ok"}
+
